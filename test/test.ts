@@ -39,4 +39,11 @@ describe("PgStore", () => {
       "ab"
     );
   });
+
+  it("save()", async () => {
+    assert.equal(
+      await store.save({ name: "test" }).then(({ name }: { name: string; }) => name),
+      "test"
+    );
+  });
 });
