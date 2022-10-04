@@ -19,7 +19,7 @@ describe("PgStore", () => {
     globalThis.electronade = {
       pgstore: {
         get: async (connectionString: string, tableName: string, id: string) => await Promise.resolve({ _id: id }),
-        getAll: async (connectionString: string, tableName: string) => await Promise.resolve([{}]),
+        getAll: async (connectionString: string, tableName: string) => await Promise.resolve([{ _id: "a" }, { _id: "b" }]),
         save: async (connectionString: string, tableName: string, item: object) => await Promise.resolve(item),
         remove: async (connectionString: string, tableName: string, id: string) => await Promise.resolve(true)
       }
@@ -30,6 +30,13 @@ describe("PgStore", () => {
     assert.equal(
       await store.get("test").then(({ _id }: { _id: string }) => _id),
       "test"
+    );
+  });
+
+  it("getAll()", async () => {
+    assert.equal(
+      await store.getAll().then((items: { _id: string }[]) => items.map(({ _id }) => _id).join("")),
+      "ab"
     );
   });
 });
