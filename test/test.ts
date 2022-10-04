@@ -46,4 +46,11 @@ describe("PgStore", () => {
       "test"
     );
   });
+
+  it("remove()", async () => {
+    assert.equal(
+      await store.remove("test"),
+      true
+    );
+  });
 });
