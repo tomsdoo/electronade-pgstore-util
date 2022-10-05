@@ -9,7 +9,7 @@ describe("PgStore", () => {
     const [connectionString, tableName] = ["posgtres://...", "tableName"];
     store = new PgStore(connectionString, tableName);
 
-    // @ts-ignore
+    // @ts-expect-error
     globalThis.electronade = {
       pgstore: {
         get: async (connectionString: string, tableName: string, id: string) =>
@@ -41,7 +41,7 @@ describe("PgStore", () => {
     assert.equal(
       await store
         .getAll()
-        .then((items: { _id: string }[]) =>
+        .then((items: Array<{ _id: string }>) =>
           items.map(({ _id }) => _id).join("")
         ),
       "ab"
