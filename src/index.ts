@@ -2,19 +2,23 @@ export class PgStore {
   protected connectionString: string;
   protected tableName: string;
   protected exposedName: string;
-  constructor(connectionString: string, tableName: string, exposedName?: string){
+  constructor(
+    connectionString: string,
+    tableName: string,
+    exposedName?: string
+  ) {
     this.connectionString = connectionString;
     this.tableName = tableName;
     this.exposedName = exposedName ?? "electronade";
   }
-  public getAll(){
+  public getAll() {
     // @ts-ignore
     return globalThis[this.exposedName].pgstore.getAll(
       this.connectionString,
       this.tableName
     );
   }
-  public get(id: string){
+  public get(id: string) {
     // @ts-ignore
     return globalThis[this.exposedName].pgstore.get(
       this.connectionString,
@@ -22,7 +26,7 @@ export class PgStore {
       id
     );
   }
-  public save(item: object){
+  public save(item: object) {
     // @ts-ignore
     return globalThis[this.exposedName].pgstore.save(
       this.connectionString,
@@ -30,7 +34,7 @@ export class PgStore {
       item
     );
   }
-  public remove(id: string){
+  public remove(id: string) {
     // @ts-ignore
     return globalThis[this.exposedName].pgstore.remove(
       this.connectionString,
