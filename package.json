@@ -5,15 +5,18 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
-    "format": "npm run format:src && npm run format:test",
+    "format": "npm run format:src && npm run format:test && npm run format:document",
     "format:src": "prettier --write src/**/*.ts",
     "format:test": "prettier --write test/**/*.ts",
+    "format:document": "prettier --write docs/**/*.html",
     "lint:src": "eslint src/**/*.ts",
     "lint:test": "eslint test/**/*.ts",
     "prepare": "husky install",
+    "serve:doc": "mdbook --serve --directory docs",
     "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/**/*.ts\" --timeout 30000"
   },
   "lint-staged": {
+    "docs/**/*.html": "npm run format:document",
     "src/**/*.ts": [
       "npm run lint:src",
       "npm run format:src"
@@ -27,6 +30,7 @@
   "author": "tom",
   "license": "MIT",
   "devDependencies": {
+    "@tomsd/md-book": "^0.17.0",
     "@types/mocha": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "eslint": "^8.24.0",
