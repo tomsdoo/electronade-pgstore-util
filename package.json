@@ -1,8 +1,10 @@
 {
   "name": "electronade-pgstore-util",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "It's an npm package that provides some utilities for electronade-pgstore.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
     "format": "npm run format:src && npm run format:test && npm run format:document",
@@ -26,7 +28,9 @@
       "npm run format:test"
     ]
   },
-  "keywords": [],
+  "keywords": [
+    "electronade"
+  ],
   "author": "tom",
   "license": "MIT",
   "devDependencies": {
